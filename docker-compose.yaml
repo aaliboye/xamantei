@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_xamante
+    environment:
+      MYSQL_DATABASE: xamantei
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpass
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - xamante_net
+
+  app:
+    build: .
+    container_name: spring_xamante
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/xamantei
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - "9898:9898"
+    networks:
+      - xamante_net
+
+volumes:
+  mysql_data:
+
+networks:
+  xamante_net:
