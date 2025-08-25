@@ -13,7 +13,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Autorise toutes les routes
-                        .allowedOrigins("http://localhost:8080") // Autorise React
+                        .allowedOrigins("https://xamante.web.app") // Autorise React
                         .allowedMethods("GET", "POST", "PUT", "DELETE") // Méthodes autorisées
                         .allowedHeaders("*") // Tous les headers autorisés
                         .allowCredentials(true); // Si tu utilises des cookies ou auth
